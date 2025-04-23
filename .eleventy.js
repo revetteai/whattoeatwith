@@ -3,6 +3,7 @@ const { DateTime } = require("luxon");
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy({ "pagefind-build": "pagefind" });
+  eleventyConfig.addPassthroughCopy({ "node_modules/pagefind/pagefind.js": "pagefind/pagefind.js" });
 
   eleventyConfig.addCollection("post", function (collectionApi) {
     return collectionApi.getFilteredByGlob("./posts/*.md");
