@@ -2,7 +2,7 @@ const fs = require("fs");
 const fsp = require("fs/promises");
 const path = require("path");
 
-const source = path.join(__dirname, "pagefind-build");
+const source = path.join(__dirname, "_site", "pagefind-build");
 const destination = path.join(__dirname, "_site", "pagefind");
 
 async function copyDir(src, dest) {
