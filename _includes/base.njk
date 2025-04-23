@@ -39,12 +39,25 @@
       font-size: 0.85rem;
       color: #666;
     }
+    .post-list {
+      list-style: none;
+      padding: 0;
+    }
     .post-list li {
       margin-bottom: 1.2rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background: #f5f5f5;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.04);
     }
     .post-list a {
       font-size: 1.1rem;
       font-weight: 600;
+      color: #222;
+      text-decoration: none;
+    }
+    .post-list a:hover {
+      text-decoration: underline;
     }
     .post-date {
       font-size: 0.9rem;
@@ -78,6 +91,19 @@
   <form class="search-form" action="/search/" method="get">
     <input type="search" name="q" placeholder="Search food pairings..." />
   </form>
+
+  <!-- Placeholder for ads -->
+  <div style="text-align:center; margin-bottom:2rem;">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-6998682919715138"
+         data-ad-slot="1234567890"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
 
   <main>
     {{ content | safe }}
