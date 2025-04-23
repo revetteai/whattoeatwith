@@ -2,92 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title }}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="{{ description or 'A daily AI-powered blog' }}">
-
-  <!-- Google Font (Inter - clean and modern) -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- Favicon (change emoji to match your niche) -->
-  <link rel="icon" href="https://emojiapi.dev/api/v1/1f37d.svg" type="image/svg+xml">
-
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6998682919715138"
-     crossorigin="anonymous"></script>
-
+  <meta name="description" content="Daily food pairing ideas, served fresh">
+  <link rel="icon" href="/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6998682919715138" crossorigin="anonymous"></script>
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 2rem;
-      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0 1rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #fff;
       color: #222;
-      line-height: 1.7;
     }
-
     header {
       text-align: center;
-      padding-bottom: 1.5rem;
-      margin-bottom: 2rem;
-      border-bottom: 1px solid #ddd;
+      padding: 2rem 0 1rem;
     }
-
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-      font-weight: 600;
+    nav {
+      text-align: center;
+      margin-bottom: 1.5rem;
     }
-
-    header p {
-      font-size: 1rem;
-      color: #666;
-      margin: 0.25rem 0 0;
-    }
-
-    article {
-      margin-bottom: 3rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid #eee;
-    }
-
-    a {
-      color: #2a7ae2;
+    nav a {
+      margin: 0 1rem;
       text-decoration: none;
+      color: #3366cc;
+      font-weight: bold;
     }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
     footer {
       margin-top: 3rem;
       text-align: center;
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .post-list li {
+      margin-bottom: 1.2rem;
+    }
+    .post-list a {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .post-date {
       font-size: 0.9rem;
       color: #777;
+    }
+    form.search-form {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    input[type="search"] {
+      padding: 0.5rem;
+      font-size: 1rem;
+      width: 70%;
+      max-width: 400px;
     }
   </style>
 </head>
 <body>
-
   <header>
     <h1>🍽️ What To Eat With</h1>
     <p>Daily food pairing ideas, served fresh</p>
   </header>
+
+  <nav>
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <a href="/contact/">Contact</a>
+    <a href="/privacy-policy/">Privacy</a>
+  </nav>
+
+  <form class="search-form" action="/search/" method="get">
+    <input type="search" name="q" placeholder="Search food pairings..." />
+  </form>
 
   <main>
     {{ content | safe }}
   </main>
 
   <footer>
-    <p>
-      <a href="/about/">About</a> |
-      <a href="/contact/">Contact</a> |
-      <a href="/privacy-policy/">Privacy Policy</a>
-    </p>
-    <p>&copy; 2025 What To Eat With</p>
+    <p>© {{ "now" | date("%Y") }} What To Eat With</p>
   </footer>
-
 </body>
 </html>
