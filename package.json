@@ -7,7 +7,7 @@
   "scripts": {
     "start": "npx @11ty/eleventy --serve",
     "build": "npx @11ty/eleventy",
-    "pagefind": "npx pagefind --verbose --source _site"
+    "pagefind": "npx pagefind --source _site --exclude /pagefind"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.0",
