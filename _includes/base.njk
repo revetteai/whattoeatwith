@@ -65,6 +65,7 @@
     }
     form.search-form {
       text-align: center;
+      margin-top: 0;
       margin-bottom: 2rem;
     }
     input[type="search"] {
@@ -88,11 +89,13 @@
     <a href="/privacy-policy/">Privacy</a>
   </nav>
 
-  <form class="search-form" action="/search/" method="get">
-    <input type="search" name="q" placeholder="Search food pairings..." />
-  </form>
+  <div style="margin-top: 0;">
+    <form class="search-form" action="/search/" method="get">
+      <input type="search" name="q" placeholder="Search food pairings..." />
+    </form>
+  </div>
 
-  <!-- Placeholder for ads -->
+  <!-- AdSense zone (optional) -->
   <div style="text-align:center; margin-bottom:2rem;">
     <ins class="adsbygoogle"
          style="display:block"
@@ -110,7 +113,7 @@
   </main>
 
   <footer>
-    <p>© {{ "now" | date("%Y") }} What To Eat With</p>
+    <p>© {{ new Date() | readableDate | slice(-4) }} What To Eat With</p>
   </footer>
 </body>
 </html>
