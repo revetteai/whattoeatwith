@@ -1,76 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>{{ title }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      body {
-        font-family: sans-serif;
-        line-height: 1.6;
-        max-width: 800px;
-        margin: auto;
-        padding: 1rem;
-        background-color: #f9f9f9;
-      }
-      h1, h2, h3 {
-        color: #222;
-      }
-      a {
-        color: #0066cc;
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-      nav {
-        margin-bottom: 1rem;
-        text-align: center;
-      }
-      nav a {
-        margin: 0 1rem;
-        font-weight: bold;
-      }
-      .search-bar {
-        display: flex;
-        justify-content: center;
-        margin: 1rem 0;
-      }
-      .search-bar input {
-        width: 100%;
-        max-width: 400px;
-        padding: 0.5rem;
-        font-size: 1rem;
-      }
-      .post-card {
-        background: white;
-        padding: 1rem;
-        border-radius: 8px;
-        box-shadow: 0 0 5px rgba(0,0,0,0.1);
-        margin-bottom: 2rem;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <h1>🍽️ What To Eat With</h1>
-      <p>Daily food pairing ideas, served fresh</p>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
-        <a href="/privacy-policy">Privacy</a>
-      </nav>
-    </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <meta name="description" content="Daily food pairing ideas, served fresh">
+  <link rel="icon" href="/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6998682919715138" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0 1rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #fff;
+      color: #222;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 0 1rem;
+    }
+    nav {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #3366cc;
+      font-weight: bold;
+    }
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .post-list li {
+      margin-bottom: 1.2rem;
+    }
+    .post-list a {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .post-date {
+      font-size: 0.9rem;
+      color: #777;
+    }
+    form.search-form {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    input[type="search"] {
+      padding: 0.5rem;
+      font-size: 1rem;
+      width: 70%;
+      max-width: 400px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🍽️ What To Eat With</h1>
+    <p>Daily food pairing ideas, served fresh</p>
+  </header>
 
-    <div class="search-bar">
-      <input type="text" placeholder="Search food pairings..." />
-    </div>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <a href="/contact/">Contact</a>
+    <a href="/privacy-policy/">Privacy</a>
+  </nav>
 
-    {{ content }}
+  <form class="search-form" action="/search/" method="get">
+    <input type="search" name="q" placeholder="Search food pairings..." />
+  </form>
 
-    <footer>
-      <p>&copy; {{ now | date("yyyy") }} What To Eat With</p>
-    </footer>
-  </body>
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer>
+    <p>© {{ "now" | date("%Y") }} What To Eat With</p>
+  </footer>
+</body>
 </html>
