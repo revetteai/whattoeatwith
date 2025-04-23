@@ -3,21 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>{{ title }}</title>
-  <meta name="description" content="{{ description or 'Food pairing blog' }}">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6998682919715138"
-     crossorigin="anonymous"></script>
-</head>
-<body>
-  <main>
-    {{ content | safe }}
-  </main>
-<footer style="margin-top: 2rem; text-align: center; font-size: 0.9rem;">
-  <p>
-    <a href="/about/">About</a> |
-    <a href="/contact/">Contact</a> |
-    <a href="/privacy-policy/">Privacy Policy</a>
-  </p>
-</footer>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ description or 'A daily AI-powered blog' }}">
 
-</body>
-</html>
+  <!-- Google Font (Inter - clean and modern) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Favicon (change emoji to match your niche) -->
+  <link rel="icon" href="https://emojiapi.dev/api/v1/1f37d.svg" type="image/svg+xml">
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6998682919715138"
+     crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif
