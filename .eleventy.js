@@ -13,6 +13,11 @@ module.exports = function (eleventyConfig) {
     return DateTime.fromJSDate(new Date(value)).toFormat(format);
   });
 
+  // ✅ Add this new readableDate filter
+  eleventyConfig.addFilter("readableDate", (value) => {
+    return DateTime.fromJSDate(new Date(value)).toFormat("MMMM d, yyyy");
+  });
+
   return {
     dir: {
       input: ".",
