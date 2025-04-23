@@ -1,7 +1,7 @@
 ---
 title: What to Eat With scrambled eggs
 date: 2025-04-23
-layout: post.njk
+layout: base.njk
 ---
 
 Scrambled eggs are a classic breakfast staple that can be enjoyed on its own or paired with other foods for a more satisfying meal. While they are delicious on their own, pairing scrambled eggs with other foods can elevate its flavors and add more variety to your breakfast. Here are some of the best pairings for scrambled eggs.
