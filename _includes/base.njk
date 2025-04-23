@@ -18,4 +18,76 @@
 
   <style>
     body {
-      font-family: 'Inter', sans-serif
+      font-family: 'Inter', sans-serif;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: #f9f9f9;
+      color: #222;
+      line-height: 1.7;
+    }
+
+    header {
+      text-align: center;
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    header p {
+      font-size: 1rem;
+      color: #666;
+      margin: 0.25rem 0 0;
+    }
+
+    article {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    a {
+      color: #2a7ae2;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🍽️ What To Eat With</h1>
+    <p>Daily food pairing ideas, served fresh</p>
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer>
+    <p>
+      <a href="/about/">About</a> |
+      <a href="/contact/">Contact</a> |
+      <a href="/privacy-policy/">Privacy Policy</a>
+    </p>
+    <p>&copy; {{ "now" | date("YYYY") }} What To Eat With</p>
+  </footer>
+
+</body>
+</html>
