@@ -3,25 +3,27 @@ title: What to Eat With
 layout: base.njk
 ---
 
-<h2>What to Eat With</h2>
-<p>Find the perfect pairings for your favorite foods.</p>
+<section style="margin-bottom: 2rem;">
+  <h2 style="margin-bottom: 0.5rem;">What to Eat With</h2>
+  <p style="margin-bottom: 1.5rem;">Find the perfect pairings for your favorite foods.</p>
 
-{% set latestPost = collections.post | reverse | first %}
+  {% set latestPost = collections.post | reverse | first %}
 
-<section style="margin-bottom: 2rem; padding: 1.5rem; border-radius: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); background: #fafafa;">
-  <h3><a href="{{ latestPost.url }}">{{ latestPost.data.title }}</a></h3>
-  <p class="post-date">{{ latestPost.date | date("MMMM D, YYYY") }}</p>
-  <div>{{ latestPost.templateContent | safe }}</div>
+  <article style="margin-bottom: 2rem; padding: 1.5rem; border-radius: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); background: #fafafa;">
+    <h3><a href="{{ latestPost.url }}">{{ latestPost.data.title }}</a></h3>
+    <p class="post-date">{{ latestPost.date | date("%B %-d, %Y") }}</p>
+    <div>{{ latestPost.templateContent | safe }}</div>
+  </article>
+
+  <h3 style="margin-top: 2rem;">More Posts</h3>
+  <ul class="post-list">
+    {% for post in collections.post | reverse %}
+      {% if post.url != latestPost.url %}
+        <li>
+          <a href="{{ post.url }}">{{ post.data.title }}</a>
+          <div class="post-date">{{ post.date | date("%B %-d, %Y") }}</div>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
 </section>
-
-<h3 style="margin-top: 2rem;">More Posts</h3>
-<ul class="post-list">
-  {% for post in collections.post | reverse %}
-    {% if post.url != latestPost.url %}
-      <li>
-        <a href="{{ post.url }}">{{ post.data.title }}</a>
-        <div class="post-date">{{ post.date | date("MMMM D, YYYY") }}</div>
-      </li>
-    {% endif %}
-  {% endfor %}
-</ul>
