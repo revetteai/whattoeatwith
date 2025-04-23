@@ -1,3 +1,9 @@
+---
+title: What to Eat With bacon
+date: 2025-04-23
+layout: base.njk
+---
+
 Bacon, the crispy and savory breakfast staple, is a beloved food by many. But did you know that it's also a versatile ingredient that can be paired with different foods to create delicious and satisfying dishes? If you're wondering what to eat with bacon, look no further! Here are 5 tasty suggestions to satisfy your bacon cravings.
 
 ## 1. Eggs
