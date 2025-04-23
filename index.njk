@@ -6,10 +6,19 @@ layout: base.njk
 <h1>What to Eat With</h1>
 <p>Find the perfect pairings for your favorite foods.</p>
 
+{% set latestPost = collections.post | reverse | first %}
+
+<section style="margin-bottom: 2rem; padding: 1rem; border: 1px solid #ccc; border-radius: 8px; background: #fdfdfd;">
+  <h2><a href="{{ latestPost.url }}">{{ latestPost.data.title }}</a></h2>
+  <p style="font-size: 0.9rem; color: #666;">{{ latestPost.date | date("DDD yyyy") }}</p>
+  <div>{{ latestPost.templateContent | safe }}</div>
+</section>
+
+<h2>More Posts</h2>
 <ul>
   {% for post in collections.post | reverse %}
-    <li>
-      <a href="{{ post.url }}">{{ post.data.title }}</a> – {{ post.date }}
-    </li>
+    {% if post.url != latestPost.url %}
+      <li><a href="{{ post.url }}">{{ post.data.title }}</a> – {{ post.date | date("DDD yyyy") }}</li>
+    {% endif %}
   {% endfor %}
 </ul>
