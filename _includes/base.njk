@@ -159,30 +159,30 @@
   <!-- ✅ Debounced Shrink-on-Scroll Script -->
 <script>
   const sticky = document.getElementById('stickyHeader');
-  let lastScrollTop = 0;
+  let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
   let isShrunk = false;
   let ticking = false;
 
   function handleScroll() {
     const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
-    if (currentScroll > lastScrollTop && currentScroll > 120) {
-      if (!isShrunk) {
-        sticky.classList.add('shrink');
-        isShrunk = true;
-      }
-    } else if (currentScroll < lastScrollTop - 20 || currentScroll < 50) {
-      if (isShrunk) {
-        sticky.classList.remove('shrink');
-        isShrunk = false;
-      }
+    // Scroll direction
+    const scrollingDown = currentScroll > lastScrollTop;
+    const scrollingUp = currentScroll < lastScrollTop;
+
+    if (scrollingDown && currentScroll > 150 && !isShrunk) {
+      sticky.classList.add('shrink');
+      isShrunk = true;
+    } else if (scrollingUp && currentScroll < 100 && isShrunk) {
+      sticky.classList.remove('shrink');
+      isShrunk = false;
     }
 
     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
     ticking = false;
   }
 
-  window.addEventListener('scroll', function () {
+  window.addEventListener('scroll', () => {
     if (!ticking) {
       window.requestAnimationFrame(handleScroll);
       ticking = true;
