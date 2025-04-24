@@ -4,16 +4,48 @@ layout: base.njk
 ---
 
 <h2>Search Results</h2>
+<input type="search" id="search-box" placeholder="Search food pairings..." autofocus style="width: 100%; padding: 0.5rem; font-size: 1rem;">
 
-<div id="search"></div>
+<ul id="results-list" class="post-list" style="margin-top: 2rem;"></ul>
 
-<script src="/pagefind/pagefind.js" type="text/javascript"></script>
-<script type="module">
-  window.addEventListener("DOMContentLoaded", () => {
-    new PagefindUI({
-      element: "#search",
-      showSubResults: true,
-      mergeIndex: false
+<script src="https://unpkg.com/lunr/lunr.js"></script>
+<script>
+  const searchBox = document.getElementById("search-box");
+  const resultsList = document.getElementById("results-list");
+
+  let index;
+  let documents = [];
+
+  fetch("/search.json")
+    .then(res => res.json())
+    .then(data => {
+      documents = data;
+      index = lunr(function () {
+        this.ref("url");
+        this.field("title");
+        this.field("excerpt");
+
+        documents.forEach(doc => this.add(doc));
+      });
     });
+
+  searchBox.addEventListener("input", () => {
+    const query = searchBox.value.trim();
+    resultsList.innerHTML = "";
+
+    if (query.length < 2 || !index) return;
+
+    const results = index.search(query);
+
+    results.forEach(result => {
+      const match = documents.find(doc => doc.url === result.ref);
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${match.url}">${match.title}</a><p class="post-date">${match.excerpt}</p>`;
+      resultsList.appendChild(li);
+    });
+
+    if (results.length === 0) {
+      resultsList.innerHTML = `<li><em>No results found.</em></li>`;
+    }
   });
 </script>
