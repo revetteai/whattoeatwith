@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -8,7 +8,6 @@
   <link rel="icon" href="/favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6998682919715138" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/lunr/lunr.js"></script>
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -91,7 +90,7 @@
   </nav>
 
   <div style="margin-top: 0;">
-    <form class="search-form" onsubmit="event.preventDefault(); window.location.href='/search/?q=' + encodeURIComponent(this.q.value)">
+    <form class="search-form" action="/search/" method="get">
       <input type="search" name="q" placeholder="Search food pairings..." />
     </form>
   </div>
@@ -116,70 +115,5 @@
   <footer>
     <p>© {{ "" | year }} What To Eat With</p>
   </footer>
-
-  <script>
-    let lunrIndex, lunrData;
-
-    async function initLunr() {
-      const res = await fetch('/search.json');
-      lunrData = await res.json();
-
-      lunrIndex = lunr(function () {
-        this.ref('url');
-        this.field('title');
-        this.field('excerpt');
-
-        lunrData.forEach(doc => this.add(doc));
-      });
-    }
-
-    function performSearch(query) {
-      if (!lunrIndex) return;
-
-      const results = lunrIndex.search(query);
-      const container = document.getElementById('search-results');
-      container.innerHTML = '';
-
-      if (results.length === 0) {
-        container.innerHTML = '<p>No results found.</p>';
-        return;
-      }
-
-      results.forEach(result => {
-        const match = lunrData.find(d => d.url === result.ref);
-        const el = document.createElement('div');
-        el.innerHTML = `<p><a href="${match.url}">${match.title}</a><br><small>${match.excerpt}</small></p>`;
-        container.appendChild(el);
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      initLunr();
-
-      const topSearch = document.querySelector('.search-form input');
-      if (topSearch) {
-        topSearch.addEventListener('keypress', e => {
-          if (e.key === 'Enter') {
-            e.preventDefault();
-            window.location.href = `/search/?q=${encodeURIComponent(topSearch.value)}`;
-          }
-        });
-      }
-
-      const searchInput = document.querySelector('#search');
-      if (searchInput) {
-        const params = new URLSearchParams(window.location.search);
-        const initialQuery = params.get('q');
-        if (initialQuery) {
-          searchInput.value = initialQuery;
-          performSearch(initialQuery);
-        }
-
-        searchInput.addEventListener('input', () => {
-          performSearch(searchInput.value);
-        });
-      }
-    });
-  </script>
 </body>
 </html>
