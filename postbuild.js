@@ -17,25 +17,15 @@ async function copyDir(src, dest) {
   }
 }
 
-async function run() {
-  const indexSource = path.join(__dirname, "_site", "pagefind-build");
-  const indexDest = path.join(__dirname, "_site", "pagefind");
-
-  const frontendSource = path.join(__dirname, "node_modules", ".bin", "pagefind");
-  const frontendDest = path.join(__dirname, "_site", "pagefind");
+(async () => {
+  const source = path.join(__dirname, "_site", "pagefind-build");
+  const destination = path.join(__dirname, "_site", "pagefind");
 
   try {
-    await copyDir(indexSource, indexDest);
-    console.log("✅ Pagefind index copied");
-
-    // Copy only the index — omit frontend for now
-    // This avoids the path resolution error in Netlify
-
-    console.log("✅ Build complete");
+    await copyDir(source, destination);
+    console.log("✅ All Pagefind assets (index + frontend) copied to _site/pagefind");
   } catch (err) {
-    console.error("❌ Postbuild failed:", err);
+    console.error("❌ Failed to copy Pagefind assets:", err);
     process.exit(1);
   }
-}
-
-run();
+})();
