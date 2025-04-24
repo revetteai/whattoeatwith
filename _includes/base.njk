@@ -33,7 +33,7 @@
     nav {
       text-align: center;
       padding: 0.5rem 1rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0;
     }
     nav a {
       margin: 0 1rem;
@@ -43,15 +43,6 @@
     }
     nav a:hover {
       text-decoration: underline;
-    }
-    .search-bar-sticky {
-      position: sticky;
-      top: 72px;
-      background: #fffaf2;
-      padding: 0.75rem 1rem 1rem;
-      z-index: 999;
-      border-bottom: 1px solid #eee;
-      text-align: center;
     }
     form.search-form {
       margin: 0;
@@ -66,7 +57,7 @@
     }
     main {
       max-width: 860px;
-      margin: auto;
+      margin: 2rem auto;
       background: #ffffff;
       border-radius: 16px;
       padding: 2rem;
@@ -117,7 +108,8 @@
     <a href="/privacy-policy/">Privacy</a>
   </nav>
 
-  <div class="search-bar-sticky">
+  <!-- ✅ Sticky Search Bar -->
+  <div style="position: sticky; top: 72px; background: #fffaf2; z-index: 998; padding: 0.75rem 1rem 1rem; border-bottom: 1px solid #eee; text-align: center;">
     <form class="search-form" action="/search/" method="get">
       <input type="search" name="q" placeholder="Search food pairings..." />
     </form>
