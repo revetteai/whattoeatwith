@@ -1,21 +1,27 @@
 const { DateTime } = require("luxon");
+const fs = require("fs");
 
 module.exports = function (eleventyConfig) {
   // ✅ Copy static assets
   eleventyConfig.addPassthroughCopy("assets");
 
-  // ✅ Copy Pagefind's generated search index
-  eleventyConfig.addPassthroughCopy({ "pagefind-build": "pagefind" });
-
-  // ✅ Copy Pagefind's required JavaScript
-  eleventyConfig.addPassthroughCopy({ "node_modules/pagefind/pagefind.js": "pagefind/pagefind.js" });
-
-  // ✅ Copy Pagefind's supporting assets (CSS, wasm, etc.)
-  eleventyConfig.addPassthroughCopy({ "node_modules/pagefind/pagefind-frontend": "pagefind" });
-
   // ✅ Blog post collection
   eleventyConfig.addCollection("post", function (collectionApi) {
-    return collectionApi.getFilteredByGlob("./posts/*.md");
+    const posts = collectionApi.getFilteredByGlob("./posts/*.md");
+
+    // ✅ Generate search.json from posts
+    eleventyConfig.on("afterBuild", () => {
+      const searchData = posts.map(post => ({
+        title: post.data.title,
+        url: post.url,
+        excerpt: post.templateContent.replace(/<[^>]+>/g, '').slice(0, 200) + "..."
+      }));
+
+      fs.writeFileSync("_site/search.json", JSON.stringify(searchData, null, 2));
+      console.log("✅ search.json generated");
+    });
+
+    return posts;
   });
 
   // ✅ Date formatting filters
