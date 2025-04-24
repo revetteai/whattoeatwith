@@ -27,12 +27,18 @@ layout: base.njk
 
         documents.forEach(doc => this.add(doc));
       });
+
+      // Auto-search if q param is present
+      const params = new URLSearchParams(window.location.search);
+      const initialQuery = params.get("q");
+      if (initialQuery) {
+        searchBox.value = initialQuery;
+        performSearch(initialQuery);
+      }
     });
 
-  searchBox.addEventListener("input", () => {
-    const query = searchBox.value.trim();
+  function performSearch(query) {
     resultsList.innerHTML = "";
-
     if (query.length < 2 || !index) return;
 
     const results = index.search(query);
@@ -47,5 +53,9 @@ layout: base.njk
     if (results.length === 0) {
       resultsList.innerHTML = `<li><em>No results found.</em></li>`;
     }
+  }
+
+  searchBox.addEventListener("input", () => {
+    performSearch(searchBox.value.trim());
   });
 </script>
