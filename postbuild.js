@@ -29,7 +29,7 @@ copyDir(indexSource, indexDest)
   });
 
 // ✅ Copy Pagefind frontend runtime
-const frontendSource = path.join(__dirname, "node_modules", "pagefind", "pagefind-frontend");
+const frontendSource = path.join(__dirname, "node_modules", "pagefind", "lib", "pagefind-frontend");
 const frontendDest = path.join(__dirname, "_site", "pagefind");
 
 copyDir(frontendSource, frontendDest)
