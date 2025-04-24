@@ -157,32 +157,37 @@
   </footer>
 
   <!-- ✅ Debounced Shrink-on-Scroll Script -->
-  <script>
-    const sticky = document.getElementById('stickyHeader');
-    let lastScrollTop = 0;
-    let ticking = false;
+<script>
+  const sticky = document.getElementById('stickyHeader');
+  let lastScrollTop = 0;
+  let isShrunk = false;
+  let ticking = false;
 
-    function handleScroll() {
-      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+  function handleScroll() {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
-      if (currentScroll > lastScrollTop && currentScroll > 100) {
-        // Scrolling down
+    if (currentScroll > lastScrollTop && currentScroll > 120) {
+      if (!isShrunk) {
         sticky.classList.add('shrink');
-      } else if (currentScroll < lastScrollTop - 10 || currentScroll < 50) {
-        // Scrolling up or near top
-        sticky.classList.remove('shrink');
+        isShrunk = true;
       }
-
-      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-      ticking = false;
+    } else if (currentScroll < lastScrollTop - 20 || currentScroll < 50) {
+      if (isShrunk) {
+        sticky.classList.remove('shrink');
+        isShrunk = false;
+      }
     }
 
-    window.addEventListener('scroll', function () {
-      if (!ticking) {
-        window.requestAnimationFrame(handleScroll);
-        ticking = true;
-      }
-    });
-  </script>
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      window.requestAnimationFrame(handleScroll);
+      ticking = true;
+    }
+  });
+</script>
 </body>
 </html>
