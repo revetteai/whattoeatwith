@@ -84,16 +84,43 @@
       font-size: 0.9rem;
       color: #777;
     }
+
+    /* Shrink-on-scroll styles */
+    .sticky-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: #fffaf2;
+      border-bottom: 1px solid #eee;
+      transition: all 0.25s ease;
+    }
+    .sticky-wrapper header {
+      padding: 1rem 1rem 0.5rem;
+      text-align: center;
+      transition: padding 0.25s ease;
+    }
+    .sticky-wrapper.shrink header {
+      padding: 0.5rem 1rem 0.25rem;
+    }
+    .sticky-wrapper.shrink h1 {
+      font-size: 1.5rem;
+    }
+    .sticky-wrapper.shrink p {
+      font-size: 0.9rem;
+    }
+    .sticky-wrapper.shrink input[type="search"] {
+      font-size: 0.9rem;
+      padding: 0.4rem;
+    }
   </style>
 </head>
 <body>
-  <!-- ✅ Sticky container for header + search -->
-  <div style="position: sticky; top: 0; z-index: 1000; background-color: #fffaf2; border-bottom: 1px solid #eee;">
-    <header style="padding: 1rem 1rem 0.5rem; text-align: center;">
+  <!-- ✅ Sticky + Shrink-on-Scroll Header & Search -->
+  <div id="stickyHeader" class="sticky-wrapper">
+    <header>
       <h1>🍽️ What To Eat With</h1>
       <p>Daily food pairing ideas, served fresh</p>
     </header>
-
     <div style="text-align: center; padding: 0.5rem 1rem 1rem;">
       <form class="search-form" action="/search/" method="get">
         <input type="search" name="q" placeholder="Search food pairings..." />
@@ -128,5 +155,23 @@
   <footer>
     <p>© {{ "" | year }} What To Eat With</p>
   </footer>
+
+  <!-- Shrink-on-scroll script -->
+  <script>
+    let lastScrollTop = 0;
+    const sticky = document.getElementById('stickyHeader');
+
+    window.addEventListener('scroll', function () {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (currentScroll > lastScrollTop && currentScroll > 100) {
+        sticky.classList.add('shrink');
+      } else {
+        sticky.classList.remove('shrink');
+      }
+
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    }, false);
+  </script>
 </body>
 </html>
