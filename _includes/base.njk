@@ -85,7 +85,7 @@
       color: #777;
     }
 
-    /* Shrink-on-scroll styles */
+    /* Sticky and shrink behavior */
     .sticky-wrapper {
       position: sticky;
       top: 0;
@@ -156,22 +156,33 @@
     <p>© {{ "" | year }} What To Eat With</p>
   </footer>
 
-  <!-- Shrink-on-scroll script -->
+  <!-- ✅ Debounced Shrink-on-Scroll Script -->
   <script>
-    let lastScrollTop = 0;
     const sticky = document.getElementById('stickyHeader');
+    let lastScrollTop = 0;
+    let ticking = false;
 
-    window.addEventListener('scroll', function () {
+    function handleScroll() {
       const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
       if (currentScroll > lastScrollTop && currentScroll > 100) {
+        // Scrolling down
         sticky.classList.add('shrink');
-      } else {
+      } else if (currentScroll < lastScrollTop - 10 || currentScroll < 50) {
+        // Scrolling up or near top
         sticky.classList.remove('shrink');
       }
 
       lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-    }, false);
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(handleScroll);
+        ticking = true;
+      }
+    });
   </script>
 </body>
 </html>
