@@ -21,19 +21,10 @@
       font-family: 'Playfair Display', serif;
       margin-top: 0;
     }
-    header {
-      position: sticky;
-      top: 0;
-      background-color: #fffaf2;
-      z-index: 1000;
-      border-bottom: 1px solid #eee;
-      padding: 1rem 1rem 0.5rem;
-      text-align: center;
-    }
     nav {
       text-align: center;
       padding: 0.5rem 1rem;
-      margin-bottom: 0;
+      margin-bottom: 1.5rem;
     }
     nav a {
       margin: 0 1rem;
@@ -96,10 +87,19 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>🍽️ What To Eat With</h1>
-    <p>Daily food pairing ideas, served fresh</p>
-  </header>
+  <!-- ✅ Sticky container for header + search -->
+  <div style="position: sticky; top: 0; z-index: 1000; background-color: #fffaf2; border-bottom: 1px solid #eee;">
+    <header style="padding: 1rem 1rem 0.5rem; text-align: center;">
+      <h1>🍽️ What To Eat With</h1>
+      <p>Daily food pairing ideas, served fresh</p>
+    </header>
+
+    <div style="text-align: center; padding: 0.5rem 1rem 1rem;">
+      <form class="search-form" action="/search/" method="get">
+        <input type="search" name="q" placeholder="Search food pairings..." />
+      </form>
+    </div>
+  </div>
 
   <nav>
     <a href="/">Home</a>
@@ -107,13 +107,6 @@
     <a href="/contact/">Contact</a>
     <a href="/privacy-policy/">Privacy</a>
   </nav>
-
-  <!-- ✅ Sticky Search Bar -->
-  <div style="position: sticky; top: 72px; background: #fffaf2; z-index: 998; padding: 0.75rem 1rem 1rem; border-bottom: 1px solid #eee; text-align: center;">
-    <form class="search-form" action="/search/" method="get">
-      <input type="search" name="q" placeholder="Search food pairings..." />
-    </form>
-  </div>
 
   <!-- AdSense placeholder -->
   <div style="text-align:center; margin-bottom:2rem;">
