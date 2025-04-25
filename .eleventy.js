@@ -5,6 +5,9 @@ module.exports = function (eleventyConfig) {
   // ✅ Copy static assets
   eleventyConfig.addPassthroughCopy("assets");
 
+  // ✅ Ensure sitemap.xml is copied to the output folder (_site)
+  eleventyConfig.addPassthroughCopy("sitemap.xml");
+
   // ✅ Blog post collection
   eleventyConfig.addCollection("post", function (collectionApi) {
     const posts = collectionApi.getFilteredByGlob("./posts/*.md");
