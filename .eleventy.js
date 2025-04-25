@@ -1,12 +1,10 @@
 const { DateTime } = require("luxon");
 const fs = require("fs");
+const path = require("path");
 
 module.exports = function (eleventyConfig) {
   // ✅ Copy static assets
   eleventyConfig.addPassthroughCopy("assets");
-
-  // ✅ Ensure sitemap.xml is copied to the output folder (_site)
-  eleventyConfig.addPassthroughCopy("sitemap.xml");
 
   // ✅ Blog post collection
   eleventyConfig.addCollection("post", function (collectionApi) {
@@ -22,6 +20,54 @@ module.exports = function (eleventyConfig) {
 
       fs.writeFileSync("_site/search.json", JSON.stringify(searchData, null, 2));
       console.log("✅ search.json generated");
+
+      // ✅ Generate sitemap.xml dynamically
+      const sitemapData = {
+        homepage: "https://whattoservewith.netlify.app/",
+        pages: [
+          { loc: "/about/", lastmod: "2025-04-25", changefreq: "monthly", priority: 0.8 },
+          { loc: "/contact/", lastmod: "2025-04-25", changefreq: "monthly", priority: 0.8 },
+          { loc: "/privacy-policy/", lastmod: "2025-04-25", changefreq: "monthly", priority: 0.8 },
+        ],
+        posts: posts.map(post => ({
+          loc: `/posts${post.url}`,
+          lastmod: DateTime.fromJSDate(post.date).toISODate(),
+          changefreq: "daily",
+          priority: 0.9,
+        }))
+      };
+
+      const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        <!-- Home page -->
+        <url>
+          <loc>${sitemapData.homepage}</loc>
+          <lastmod>${sitemapData.pages[0].lastmod}</lastmod>
+          <changefreq>${sitemapData.pages[0].changefreq}</changefreq>
+          <priority>${sitemapData.pages[0].priority}</priority>
+        </url>
+        <!-- Other pages -->
+        ${sitemapData.pages.map(page => `
+          <url>
+            <loc>${sitemapData.homepage}${page.loc}</loc>
+            <lastmod>${page.lastmod}</lastmod>
+            <changefreq>${page.changefreq}</changefreq>
+            <priority>${page.priority}</priority>
+          </url>
+        `).join('')}
+        <!-- Blog Posts -->
+        ${sitemapData.posts.map(post => `
+          <url>
+            <loc>${sitemapData.homepage}${post.loc}</loc>
+            <lastmod>${post.lastmod}</lastmod>
+            <changefreq>${post.changefreq}</changefreq>
+            <priority>${post.priority}</priority>
+          </url>
+        `).join('')}
+      </urlset>`;
+
+      fs.writeFileSync(path.join("_site", "sitemap.xml"), sitemapXml);
+      console.log("✅ sitemap.xml generated");
     });
 
     return posts;
