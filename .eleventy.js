@@ -5,6 +5,8 @@ const path = require("path");
 module.exports = function (eleventyConfig) {
   // ✅ Copy static assets
   eleventyConfig.addPassthroughCopy("assets");
+  // ✅ Copy robots.txt so Google can pick up your sitemap directive
+  eleventyConfig.addPassthroughCopy("robots.txt");
 
   // ✅ Blog post collection
   eleventyConfig.addCollection("post", function (collectionApi) {
@@ -22,14 +24,14 @@ module.exports = function (eleventyConfig) {
       console.log("✅ search.json generated");
 
       // ✅ Generate sitemap.xml dynamically (fixed version)
-      const homepage = "https://whattoeatwith.netlify.app"; // <<< Fixed
+      const homepage = "https://whattoeatwith.netlify.app";
       const pages = [
         { loc: "/about/", lastmod: "2025-04-25", changefreq: "monthly", priority: 0.8 },
         { loc: "/contact/", lastmod: "2025-04-25", changefreq: "monthly", priority: 0.8 },
         { loc: "/privacy-policy/", lastmod: "2025-04-25", changefreq: "monthly", priority: 0.8 },
       ];
       const postsData = posts.map(post => ({
-        loc: post.url, // <<< Fixed: NO "/posts" manually added
+        loc: post.url,
         lastmod: DateTime.fromJSDate(post.date).toISODate(),
         changefreq: "daily",
         priority: 0.9,
