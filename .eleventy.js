@@ -9,8 +9,18 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("robots.txt");
 
   // ✅ Blog post collection
-  eleventyConfig.addCollection("post", function (collectionApi) {
-    const posts = collectionApi.getFilteredByGlob("./posts/*.md");
+ eleventyConfig.addCollection("post", function (collectionApi) {
+  const posts = collectionApi.getFilteredByGlob("./posts/*.md").reverse();
+
+  // Attach neighbors
+  posts.forEach((post, index) => {
+    post.data.prevPost = posts[index - 1] || null;
+    post.data.nextPost = posts[index + 1] || null;
+  });
+
+  return posts;
+});
+
 
     // ✅ Generate search.json from posts
     eleventyConfig.on("afterBuild", () => {
