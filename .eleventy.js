@@ -5,21 +5,17 @@ const path = require("path");
 module.exports = function (eleventyConfig) {
   // ✅ Copy static assets
   eleventyConfig.addPassthroughCopy("assets");
-  // ✅ Copy robots.txt so Google can pick up your sitemap directive
   eleventyConfig.addPassthroughCopy("robots.txt");
 
   // ✅ Blog post collection
-eleventyConfig.addCollection("post", function (collectionApi) {
-  const posts = collectionApi.getFilteredByGlob("./posts/*.md").reverse();
+  eleventyConfig.addCollection("post", function (collectionApi) {
+    const posts = collectionApi.getFilteredByGlob("./posts/*.md").reverse();
 
-  // Attach neighbors
-  posts.forEach((post, index) => {
-    post.data.prevPost = posts[index - 1] || null;
-    post.data.nextPost = posts[index + 1] || null;
-  });
-
-  return posts;
-});
+    // Attach neighbors
+    posts.forEach((post, index) => {
+      post.data.prevPost = posts[index - 1] || null;
+      post.data.nextPost = posts[index + 1] || null;
+    });
 
     // ✅ Generate search.json from posts
     eleventyConfig.on("afterBuild", () => {
@@ -32,7 +28,7 @@ eleventyConfig.addCollection("post", function (collectionApi) {
       fs.writeFileSync("_site/search.json", JSON.stringify(searchData, null, 2));
       console.log("✅ search.json generated");
 
-      // ✅ Generate sitemap.xml dynamically (fixed version)
+      // ✅ Generate sitemap.xml dynamically
       const homepage = "https://whattoeatwith.netlify.app";
       const pages = [
         { loc: "/about/", lastmod: "2025-04-25", changefreq: "monthly", priority: 0.8 },
