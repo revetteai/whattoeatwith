@@ -9,7 +9,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("robots.txt");
 
   // ✅ Blog post collection
- eleventyConfig.addCollection("post", function (collectionApi) {
+eleventyConfig.addCollection("post", function (collectionApi) {
   const posts = collectionApi.getFilteredByGlob("./posts/*.md").reverse();
 
   // Attach neighbors
@@ -20,7 +20,6 @@ module.exports = function (eleventyConfig) {
 
   return posts;
 });
-
 
     // ✅ Generate search.json from posts
     eleventyConfig.on("afterBuild", () => {
