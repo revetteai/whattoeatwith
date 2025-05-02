@@ -164,7 +164,7 @@
   </div>
 
   <main>
-{% if title %}
+{% if page.url contains '/posts/' %}
 <h1>{{ title }}</h1>
 {% endif %}
     {{ content | safe }}
