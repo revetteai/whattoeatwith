@@ -2,6 +2,7 @@
 title: What to Eat With Salmon  
 description: Discover the best pairings for Salmon.  
 date: 2025-05-23  
+layout: base.njk
 ---
 
 Salmon is a versatile and flavorful fish cherished for its rich, fatty texture and nutritional benefits. Pairing **salmon** with the right ingredients can elevate its flavors and make your meal unforgettable.
