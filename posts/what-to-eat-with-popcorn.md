@@ -2,6 +2,7 @@
 title: What to Eat With Popcorn  
 description: Discover the best pairings for Popcorn.  
 date: 2025-05-24  
+layout: base.njk
 ---
 
 **Popcorn** is not just a movie-night staple; it's a versatile snack that can be paired with a variety of foods to enhance its flavor and texture. Whether you're hosting a casual gathering or indulging in a cozy night in, these pairings can elevate your popcorn experience to a whole new level.
