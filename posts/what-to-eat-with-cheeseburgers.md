@@ -1,7 +1,8 @@
 ---
 title: What to Eat With Cheeseburgers  
 description: Discover the best pairings for Cheeseburgers.  
-date: 2025-05-26  
+date: 2025-05-26
+layout: base.njk
 ---
 
 When enjoying a **juicy cheeseburger**, it's essential to find the ideal accompaniments that elevate your meal from simple to extraordinary. Whether hosting a summer barbecue or a quick weeknight dinner, pairing your cheeseburger with the right foods can enhance flavors and create a memorable dining experience.
