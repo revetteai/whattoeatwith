@@ -2,6 +2,7 @@
 title: What to Eat With Caesar Salad
 description: Discover the best pairings for Caesar Salad.
 date: 2025-05-28
+layout: base.njk
 ---
 
 A **Caesar Salad** is a quintessential dish known for its crisp romaine lettuce, garlicky croutons, and creamy dressing. Whether you’re enhancing a light lunch or crafting a gourmet dinner, pairing your Caesar Salad with complementary foods can elevate your meal experience.
