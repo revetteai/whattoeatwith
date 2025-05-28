@@ -2,6 +2,7 @@
 title: What to Eat With Grits
 description: Discover the best pairings for Grits.
 date: 2025-05-25
+layout: base.njk
 ---
 
 Grits, a versatile Southern staple, can be transformed into a culinary delight when paired with the right ingredients. Whether you're serving them for breakfast, lunch, or dinner, these hearty combinations will elevate your grits experience to a new level.
