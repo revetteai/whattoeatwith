@@ -2,6 +2,7 @@
 title: What to Eat With Baked Potatoes
 description: Discover the best pairings for Baked Potatoes.
 date: 2025-05-27
+layout: base.njk
 ---
 
 Looking to elevate your **Baked Potatoes** from a simple side to a standout meal? Pairing them with the right foods can transform this humble dish into a culinary delight. Here are some of the best foods to enjoy with your baked potatoes:
