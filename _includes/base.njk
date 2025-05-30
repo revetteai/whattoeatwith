@@ -168,10 +168,12 @@
 
 <main>
 {% if "/posts/" in page.url %}
-{% set urlHash = (page.url or '') | string | sum %}
-{% set imageIndex = urlHash % images.length %}
-{% set imageFile = images[imageIndex] %}
-<img src="/assets/images/{{ imageFile }}" alt="Food Art" style="max-width:100%;border-radius:12px;margin-bottom:2rem;">
+{% if "/posts/" in page.url %}
+  {% set dateHash = (date | date("X")) | int(0) %}
+  {% set imageIndex = dateHash % images.length %}
+  {% set imageFile = images[imageIndex] %}
+  <img src="/assets/images/{{ imageFile }}" alt="Food Art" style="max-width:100%;border-radius:12px;margin-bottom:2rem;">
+{% endif %}
 
 
  <div style="text-align:center; margin-bottom:2rem;">
