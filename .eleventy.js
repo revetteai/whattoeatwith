@@ -31,10 +31,12 @@ module.exports = function (eleventyConfig) {
       fs.writeFileSync("_site/search.json", JSON.stringify(searchData, null, 2));
       console.log("✅ search.json generated");
 
-     // .eleventy.js
+    // .eleventy.js or filters/sum.js
 module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter("sum", function(str) {
-    if (!str || typeof str !== "string") str = String(str || "");
+    if (!str) return 0;
+    // Force str to be a string always
+    str = String(str);
     return Array.from(str).reduce((a, c) => a + c.charCodeAt(0), 0);
   });
 };
