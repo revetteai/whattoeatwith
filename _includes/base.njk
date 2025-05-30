@@ -172,8 +172,9 @@
   {% set dateHash = (date | date("X")) | int(0) %}
   {% set imageIndex = dateHash % images.length %}
   {% set imageFile = images[imageIndex] %}
-<p>DEBUG: date={{ date }} | page.date={{ page.date }} | page.url={{ page.url }}</p>
-
+<p style="font-size:14px;color:#999;">
+  DEBUG: date={{ date }} | dateHash={{ dateHash }} | images.length={{ images.length }} | imageIndex={{ imageIndex }} | imageFile={{ imageFile }}
+</p>
   <img src="/assets/images/{{ imageFile }}" alt="Food Art" style="max-width:100%;border-radius:12px;margin-bottom:2rem;">
 {% endif %}
 
