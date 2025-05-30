@@ -31,6 +31,15 @@ module.exports = function (eleventyConfig) {
       fs.writeFileSync("_site/search.json", JSON.stringify(searchData, null, 2));
       console.log("✅ search.json generated");
 
+      // .eleventy.js
+module.exports = function(eleventyConfig) {
+  eleventyConfig.addFilter("sum", function(str) {
+    // Sum char codes in the string
+    return Array.from(str).reduce((a, c) => a + c.charCodeAt(0), 0);
+  });
+};
+
+
       // ✅ Generate sitemap.xml dynamically
       const homepage = "https://whattoeatwith.org";
       const pages = [
