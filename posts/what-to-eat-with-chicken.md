@@ -1,4 +1,3 @@
-```markdown
 ---
 title: What to Eat With Chicken
 description: Discover the best pairings for Chicken.
