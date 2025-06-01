@@ -1,4 +1,3 @@
-null
 ---
 title: What to Eat With Rice
 description: Discover the best pairings for Rice.
