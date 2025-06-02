@@ -1,4 +1,3 @@
- 
 ---
 title: What to Eat With Avocado
 description: Discover the best pairings for Avocado.
