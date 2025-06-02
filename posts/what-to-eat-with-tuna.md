@@ -1,4 +1,3 @@
-null
 ---
 title: What to Eat With Tuna
 description: Discover the best pairings for Tuna.
