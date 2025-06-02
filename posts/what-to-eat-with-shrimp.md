@@ -1,4 +1,3 @@
- 
 ---
 title: What to Eat With Shrimp
 description: Discover the best pairings for Shrimp.
